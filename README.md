@@ -1,45 +1,33 @@
 # coursUM320202021
 le support de cours de 2020 - 2021
- 
-#les questions de culture générale - introduction
- 
-* Date et nom de l'inventeur du web : 
-    Tim Berners-Lee en 1989
 
-* La différence entre le Web et internet ?
-Internet est la structure sur lequelles l'application web existe.
-Internet c'est le réseau globale. Et le web est un des services de internet.
+#les questions de culture général - introduction
+
+* Date et nom de l'inventeur du web :
+
+Timothy John Berners-Lee en 1990
+
+* Différence entre le web et Internet :
+
+Le Web est un ensemble d’ informations, tandis qu’Internet est le réseau informatique qui permet de les transporter
 
 * Les 3 technologies fondatrices du Web et à quoi elles servent ?
-- Le HTTP : qui est le protocole de transfert réseaux au dessus d'IP. Il permet l'envoie de données.
-- Le HTML : est un système de balisage ( lagage de description ) normé par le W3C pour permettre de décrire la structure d'une page web.
-- Les URI : système de nommage des Ressources.
 
-* Qu’est-ce que l’interopérabilité ? 
-    Possibilité de communication entre deux ou plusieurs systèmes, appareils ou éléments informatiques.
+HTTP (protocole de communication réseau)
+HTML (langage par balise pour coder des pages web)
 
-* Qu'est ce que le web de données ? 
-Ca permet de relier les données entre elles sur le web par des URI.
-    Publication de données structurées et reliés entres elles sur le Web --> réseau global d'informations.
-le web des données est la demarche d'integrer ensemble des données disparates et de les organiser 
+* Qu’est-ce que l’interopérabilité ?
+
+fait que des systèmes informatiques ou téléphoniques puissent s'adapter afin de collaborer avec d ' autres systèmes indépendants, afin de créer un réseau et de faciliter le transfert de données
+
+* Qu'est ce que le web de données ?
+
+Initiative du W3C (Consortium World Wide Web) visant à favoriser la publication de données structurées sur le Web, non pas sous la forme de silos de données isolés les uns des autres, mais en les reliant entre elles pour constituer un réseau global d'informations
 
 * Qu'est-ce que ça veut dire pour vous "intégration de données connectées" ?
-L'intégration de données connectée est l'aggregation de données.
 
-* En quoi cela peut vous servir dans un parcours Data Science ?
-Cela permet d'aller chercher des données et de constituer un corpus de données.
+Requêtage d'API pour récupérer des données venant du Web
 
-#le sujet support d'exercice 
-Sur un github partagé, une branche par groupe, nous allons développer un moissoneur de données sur les EHPAD en France.
+* En quoi cela peut vous servir dans un parcours Dats Science ?
 
-#le sujet du projet en groupe
-
-Identifier des sources de données sur le Web.
-Récupérer des données à partir de ces sources.
-Les aggréger et les restituer.
-Identifier les difficultés de la démarche.
-
-Par groupe de 4 ou 3.
-
-Le livrable c'est un code client html javascript uniquement hébergé en githubpage.
-
+Façon efficace de récupérer une grande quantité de données pour pouvoir appliquer des modèles d'appretissage dessus

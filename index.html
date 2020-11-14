@@ -28,6 +28,7 @@
                         document.getElementById("maincontent").innerHTML=data["features"][0]["properties"]["citycode"];
                         code_insee = data["features"][0]["properties"]["citycode"];
                         console.log(code_insee);
+                        console.log(data)
                     })
             }
         )
@@ -81,30 +82,63 @@
                } })
 
     } )
-    fetch('https://www.data.gouv.fr/fr/datasets/r/4c919d05-7554-45fb-b8ac-0daa37560b2c', { method: 'GET',
+    fetch('https://www.data.gouv.fr/fr/datasets/r/58b6b75e-4f15-4efb-adb5-3f7b939fb2d1', { method: 'GET',
         headers: {},
         mode: 'cors',
         cache: 'default'}).then(
         function(response) {
             response.text().then(function (data) {
-                prenom = CSVToArray(data, ",");
-                console.log(prenom[0]);
-                let indexInseename = prenom[0].indexOf("commun_nom");
-                let indexPrenom = prenom[0].indexOf(`enfant_prenom`);
-                let indexAnnee = prenom[0].indexOf(`annee`);
-                let popular = 0
-                let ipop
-                for (let i = 0; i < prenom.length; i++) {
-                    if (prenom[i][indexInseename] === code_insee && prenom[i][indexAnnee] == 2017 ) {
-                        if (prenom[i][4] > popular) {
-                            popular = prenom[i][4];
-                            ipop =  i
-                        }
-                    }}
-                console.log(ipop);
+                prix = CSVToArray(data, ",");
+                console.log(prix[0]);
+                let indexInseeprix = prix[0].indexOf("INSEE_COM");
+                let indexPrix = prix[0].indexOf(`Prixm2`);
+                  for (let i = 0; i < prix.length; i++) {
+                     if (prix[i][indexInseeprix] == code_insee) {
+                       console.log(prix[i][indexPrix])
 
+
+                 }}
             })
-        }
-    )
+            })
+
+    console.log(fetch('https://www.data.gouv.fr/fr/datasets/r/b099b66f-a058-476f-a166-917bcbe83cf5', {
+        method: 'GET',
+        headers: {},
+        mode: 'cors',
+        cache: 'default'
+    }).then(
+        function (response) {
+            response.text().then(function (data) {
+                res = CSVToArray(data, ";");
+                console.log(res[0]);
+                let indexInseeEau = res[0].indexOf("NUM_COM");
+                let indexSite = res[0].indexOf(`CD_STATION`);
+                let Sites = [];
+                for (let i = 0; i < res.length; i++) {
+                    if (res[i][indexInseeEau] == code_insee) {
+                        Sites.push(res[i][indexSite]);
+                    }
+                }
+                console.log(Sites);
+                fetch('https://www.data.gouv.fr/fr/datasets/r/202e9d9b-34b3-4674-964f-2dc0d3dc438c', {
+                    method: 'GET',
+                    headers: {},
+                    mode: 'cors',
+                    cache: 'default'
+                }).then(
+                    function (response) {
+                        response.text().then(function (data) {
+                            eau = CSVToArray(data, ";");
+                            console.log(eau[35][1]);
+                            for (let i = 0; i < eau.length; i++) {
+                                if (Sites.includes(eau[i][1])) {
+                                    console.log("coucou");
+
+                                }
+                            }
+
+                        })
+                    })
+            })}))
 
 </script>

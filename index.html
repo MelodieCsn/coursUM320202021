@@ -101,44 +101,6 @@
             })
             })
 
-    console.log(fetch('https://www.data.gouv.fr/fr/datasets/r/b099b66f-a058-476f-a166-917bcbe83cf5', {
-        method: 'GET',
-        headers: {},
-        mode: 'cors',
-        cache: 'default'
-    }).then(
-        function (response) {
-            response.text().then(function (data) {
-                res = CSVToArray(data, ";");
-                console.log(res[0]);
-                let indexInseeEau = res[0].indexOf("NUM_COM");
-                let indexSite = res[0].indexOf(`CD_STATION`);
-                let Sites = [];
-                for (let i = 0; i < res.length; i++) {
-                    if (res[i][indexInseeEau] == code_insee) {
-                        Sites.push(res[i][indexSite]);
-                    }
-                }
-                console.log(Sites);
-                fetch('https://www.data.gouv.fr/fr/datasets/r/202e9d9b-34b3-4674-964f-2dc0d3dc438c', {
-                    method: 'GET',
-                    headers: {},
-                    mode: 'cors',
-                    cache: 'default'
-                }).then(
-                    function (response) {
-                        response.text().then(function (data) {
-                            eau = CSVToArray(data, ";");
-                            console.log(eau[35][1]);
-                            for (let i = 0; i < eau.length; i++) {
-                                if (Sites.includes(eau[i][1])) {
-                                    console.log("coucou");
-
-                                }
-                            }
-
-                        })
-                    })
-            })}))
+    
 
 </script>

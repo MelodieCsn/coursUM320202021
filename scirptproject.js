@@ -61,4 +61,3 @@ fetch(url1, {method: 'GET',
                     })
             }
         )
-    return j;

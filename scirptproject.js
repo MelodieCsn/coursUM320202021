@@ -1,40 +1,40 @@
 let postCode1  = window.prompt("Entrez un premier code postal : ");
 let postCode2  = window.prompt("Entrez un second code postal pour comparaison : ");
 
-//On récupère les code INSEE grâce aux codes postaux
-let inseeCode1 = getInsee(postCode1);
-let inseeCode2 = getInsee(postCode2);
+let inseeCode1;
+let inseeCode2;
 
-let numberOfCovidCenter1 = getNumberOfCovidCenter(postCode1);
-let numberOfCovidCenter2 = getNumberOfCovidCenter(postCode2);
+let numberOfCovidCenter1;
+let numberOfCovidCenter2;
 
-console.log(postCode1, postCode2);
-console.log(inseeCode1, inseeCode2);
-console.log(numberOfCovidCenter1, numberOfCovidCenter2);
 
-function getInsee(postCode) {
-    let url = 'https://api-adresse.data.gouv.fr/search/?q=a&postcode='.concat(postCode);
-    let inseeCode;
+let covidPostCode;
+let regex = /\d+/g;
 
-    fetch(url, {method: 'GET',
-        headers: {},
-        cache: 'default'})
-        .then(function(response){
-                response.json()
-                    .then(function(data){
-                        console.log(data["features"][0]["properties"]["citycode"]);
-                        inseeCode = data["features"][0]["properties"]["citycode"];
+let url1 = 'https://api-adresse.data.gouv.fr/search/?q=a&postcode='.concat(postCode1);
+let url2 = 'https://api-adresse.data.gouv.fr/search/?q=a&postcode='.concat(postCode2);
+let inseeCode;
 
-                    })
-            }
-        )
-     inseeCode;
-}
-
-function getNumberOfCovidCenter(postCode) {
-    let covidPostCode;
-    let regex = /\d+/g;
-    let j = 0
+fetch(url1, {method: 'GET',
+  headers: {},
+  cache: 'default'})
+  .then(function(response){
+          response.json()
+              .then(function(data){
+                  inseeCode1 = data["features"][0]["properties"]["citycode"];
+              })
+      }
+  )
+  fetch(url2, {method: 'GET',
+    headers: {},
+    cache: 'default'})
+    .then(function(response){
+            response.json()
+                .then(function(data){
+                    inseeCode2 = data["features"][0]["properties"]["citycode"];
+                })
+        }
+    )
 
     fetch("https://www.data.gouv.fr/fr/datasets/r/7c0f7980-1804-4382-a2a8-1b4af2e10d32", {method: 'GET',
         headers: {},
@@ -51,12 +51,14 @@ function getNumberOfCovidCenter(postCode) {
                             if (!stringAdressNumbers || stringAdressNumbers.length < 2) continue;
                             covidPostCode = stringAdressNumbers[stringAdressNumbers.length-1];
 
-                            if (covidPostCode == postCode) {
-                                j++
+                            if (covidPostCode == postCode1) {
+                                numberOfCovidCenter1++
+                            }
+                            if (covidPostCode == postCode2) {
+                              numberOfCovidCenter++
                             }
                         }
                     })
             }
         )
     return j;
-}
